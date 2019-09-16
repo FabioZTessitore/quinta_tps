@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>Lezione N0</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        <link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+    </head>
+    <body>
+        <h3 id="lezione-n0">Lezione N0</h3>
+<h1 id="git-e-github">Git e GitHub</h1>
+<h2 id="githubcom"><a href="http://GitHub.com">GitHub.com</a></h2>
+<p><code>GitHub</code> è un social network per programmatori. Attraverso i suoi servizi, tra le altre cose, è possibile pubblicare codice, condividerlo e collaborare con altri sviluppatori.</p>
+<h2 id="git">git</h2>
+<p><code>git</code> è un sistema per la gestione delle versioni. Mediante questo strumento è possibile tenere traccia delle modifiche apportate ad un codice, crearne versioni diverse, integrare funzionalità, collaborare, ecc. Noi lo utilizzeremo soprattutto per caricare i nostri codici su <code>GitHub</code>.</p>
+<h3 id="passo-0-configurazione-iniziale">Passo 0: Configurazione iniziale</h3>
+<p>Per poter utilizzare <code>git</code> è necessaria una configurazione iniziale.</p>
+<pre><code class="language-bash"><div>$ git config --global user.name <span class="hljs-string">"NOME UTENTE"</span>
+$ git config --global user.email <span class="hljs-string">"utente@email"</span>
+</div></code></pre>
+<h3 id="passo-1-creazione-di-una-repository">Passo 1: Creazione di una repository</h3>
+<p>Una <em>repository</em> è una directory ospitata sui server di <code>GitHub</code>.</p>
+<p>Le repository si creano mediante l'interfaccia Web del servizio.</p>
+<p><strong>Nota</strong>: All'atto della creazione di una nuova repository, spuntare l'opzione
+&quot;Initialize this repository with a README&quot;. In questo modo verrà creato un
+file <a href="http://README.md">README.md</a> e sarà possibile proseguire con i passi successivi.</p>
+<h3 id="passo-2-clonare-una-repository">Passo 2: Clonare una repository</h3>
+<p>Per poter effettuare modifiche al codice dobbiamo clonare la repository remota
+in una cartella locale.</p>
+<pre><code class="language-bash"><div>$ git <span class="hljs-built_in">clone</span> https://github.com/NOMEUTENTE/NOMEREPO.git
+</div></code></pre>
+<p><strong>Nota</strong>: L'indirizzo della repository si può ottenere anche dal sito.</p>
+<h3 id="passo-3-modificare-i-file">Passo 3: Modificare i file</h3>
+<p>Ora possiamo modificare l'unico file esistente (<code>README.md</code>) oppure aggiungere
+altri file alla nostra cartella locale.</p>
+<h3 id="passo-4-selezionare-i-file-da-caricare">Passo 4: Selezionare i file da caricare</h3>
+<p><code>git</code> funziona un po' come una macchina fotografica. Prima di scattare la foto
+dobbiamo decidere chi mettere in posa.</p>
+<p>Se, per esempio, abbiamo modificato il file <code>README.md</code>:</p>
+<pre><code class="language-bash"><div>$ git add README.md
+</div></code></pre>
+<h3 id="passo-5-scattare-la-foto">Passo 5: Scattare la foto</h3>
+<p>Una volta selezionati i file da fotografare, scattiamo la foto:</p>
+<pre><code class="language-bash"><div>$ git commit -m <span class="hljs-string">"descrizione modifica apportata"</span>
+</div></code></pre>
+<h3 id="passo-6-caricamento-dei-file-su-github">Passo 6: Caricamento dei file su GitHub</h3>
+<pre><code class="language-bash"><div>git push origin master
+</div></code></pre>
+
+    </body>
+    </html>
