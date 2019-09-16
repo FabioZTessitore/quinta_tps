@@ -26,15 +26,14 @@ In una pagina sono generalmente presenti vari elementi appartenenti alla stessa 
 ```html
 <!-- raccolta di post -->
 <div class="posts">
-
     <!-- un post -->
-    <div class="post"> ... </div>
+    <div class="post">Primo Post</div>
 
     <!-- un altro post -->
-    <div class="post"> ... </div>
+    <div class="post">Secondo Post</div>
 
     <!-- e ancora uno -->
-    <div class="post"> ... </div>
+    <div class="post">Terzo Post</div>
 </div>
 ```
 
@@ -42,10 +41,13 @@ Nel foglio di stile, per far riferimento ad una particolare classe, si utilizza 
 
 ```css
 .posts {
-    background-color: #333;
+    background-color: #eee;
+    padding: 15px;
 }
 
 .post {
-    background-color: #eee;
+    background-color: #fff;
+    margin-bottom: 15px;
+    padding: 15px;
 }
 ```

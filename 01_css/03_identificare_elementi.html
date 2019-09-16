@@ -37,24 +37,26 @@
 <p>In una pagina sono generalmente presenti vari elementi appartenenti alla stessa categoria o classe. Ad ognuno di loro può essere assegnata la classe di appartenenza.</p>
 <pre><code class="language-html"><div><span class="hljs-comment">&lt;!-- raccolta di post --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"posts"</span>&gt;</span>
-
     <span class="hljs-comment">&lt;!-- un post --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"post"</span>&gt;</span> ... <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"post"</span>&gt;</span>Primo Post<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
     <span class="hljs-comment">&lt;!-- un altro post --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"post"</span>&gt;</span> ... <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"post"</span>&gt;</span>Secondo Post<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
     <span class="hljs-comment">&lt;!-- e ancora uno --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"post"</span>&gt;</span> ... <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"post"</span>&gt;</span>Terzo Post<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 </div></code></pre>
 <p>Nel foglio di stile, per far riferimento ad una particolare classe, si utilizza il simbolo <code>.</code> (punto).</p>
 <pre><code class="language-css"><div><span class="hljs-selector-class">.posts</span> {
-    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#333</span>;
+    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#eee</span>;
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">15px</span>;
 }
 
 <span class="hljs-selector-class">.post</span> {
-    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#eee</span>;
+    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#fff</span>;
+    <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">15px</span>;
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">15px</span>;
 }
 </div></code></pre>
 
