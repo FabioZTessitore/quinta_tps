@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>Lezione N4</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body>
+        <h3 id="lezione-n4">Lezione N4</h3>
+<h1 id="esercitazione-guidata">Esercitazione guidata</h1>
+<p>Regole generali:</p>
+<ul>
+<li>tutti gli elementi devono avere una classe;</li>
+<li>utilizzo della notazione BEM (block-element-modifier) per i nomi delle classi;</li>
+</ul>
+<h2 id="creazione-di-un-componente-senza-elementi-e-senza-modificatori">Creazione di un componente senza elementi e senza modificatori</h2>
+<pre><code class="language-html"><div><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn"</span>&gt;</span>Click Me<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</div></code></pre>
+<pre><code class="language-css"><div><span class="hljs-selector-class">.btn</span> {
+    <span class="hljs-attribute">background-color</span>: orangered;
+    <span class="hljs-attribute">color</span>: white;
+    <span class="hljs-attribute">border</span>: none;
+    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">3px</span>;
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">5px</span> <span class="hljs-number">30px</span>;
+    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">16px</span>;
+}
+</div></code></pre>
+<h2 id="creazione-di-un-componente-senza-elementi-e-con-modificatori">Creazione di un componente senza elementi e con modificatori</h2>
+<pre><code class="language-html"><div><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn"</span>&gt;</span>Click Me<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn--primary"</span>&gt;</span>Click Me<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn--secondary"</span>&gt;</span>Click Me<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</div></code></pre>
+<pre><code class="language-css"><div><span class="hljs-selector-class">.btn</span> {
+    <span class="hljs-attribute">background-color</span>: orangered;
+    <span class="hljs-attribute">color</span>: white;
+    <span class="hljs-attribute">border</span>: none;
+    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">3px</span>;
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">5px</span> <span class="hljs-number">30px</span>;
+    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">16px</span>;
+}
+
+<span class="hljs-selector-class">.btn--primary</span> {
+    <span class="hljs-attribute">color</span>: white;
+    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#007bff</span>;
+}
+
+<span class="hljs-selector-class">.btn--secondary</span> {
+    <span class="hljs-attribute">color</span>: white;
+    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#6c757d</span>;
+}
+</div></code></pre>
+<h2 id="creazione-di-un-componente-con-elementi">Creazione di un componente con elementi</h2>
+<pre><code class="language-html"><div><span class="hljs-comment">&lt;!-- componente 'photo' --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"photo"</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- una 'photo' e' costituita da un'immagine ('photo__img')
+        e da una descrizione ('photo__caption') --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"photo__img"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"images/cow.jpg"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">figcaption</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"photo__caption"</span>&gt;</span>Cow Says: "Moo"<span class="hljs-tag">&lt;/<span class="hljs-name">figcaption</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
+</div></code></pre>
+<pre><code class="language-css"><div><span class="hljs-selector-class">.photo</span> {
+    <span class="hljs-attribute">margin</span>: <span class="hljs-number">100px</span>;
+    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#000</span>;
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">400px</span>;
+    <span class="hljs-attribute">text-align</span>: center;
+    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">5px</span>;
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span>;
+}
+
+<span class="hljs-selector-class">.photo__img</span> {
+    <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">20px</span>;
+}
+
+<span class="hljs-selector-class">.photo__caption</span> {
+    <span class="hljs-attribute">color</span>: white;
+    <span class="hljs-attribute">padding-bottom</span>: <span class="hljs-number">30px</span>;
+    <span class="hljs-attribute">letter-spacing</span>: <span class="hljs-number">9px</span>;
+    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">22px</span>;
+}
+</div></code></pre>
+
+    </body>
+    </html>

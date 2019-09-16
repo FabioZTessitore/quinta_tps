@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>Lezione N2</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body>
+        <h3 id="lezione-n2">Lezione N2</h3>
+<h1 id="aggiungere-un-foglio-di-stile">Aggiungere un foglio di stile</h1>
+<h2 id="cose-da-non-fare">Cose da non fare</h2>
+<p>Non utilizzare tag e attributi che modificano l'apparenza degli elementi. Si tratta di retaggi storici dell'HTML che vanno eliminati.</p>
+<pre><code class="language-html"><div><span class="hljs-comment">&lt;!-- NON COSÌ --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">bgcolor</span>=<span class="hljs-string">"red"</span>&gt;</span>
+    ...
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+</div></code></pre>
+<pre><code class="language-html"><div><span class="hljs-comment">&lt;!-- NEANCHE COSÌ --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">center</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">center</span>&gt;</span>
+</div></code></pre>
+<h2 id="utilizzare-gli-stili-in-linea">Utilizzare gli stili in linea</h2>
+<p>Per modificare l'apparenza degli elementi si utilizzano i fogli di stile (CSS, Cascading Style Sheet).
+È possibile, ma non consigliabile, modificare lo stile di un elemento in linea, cioè direttamente sul tag mediante l'<em>attributo</em> <code>style</code>.</p>
+<pre><code class="language-html"><div><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"color: red"</span>&gt;</span>Red Paragraph<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+<h2 id="utilizzare-il-tag-style">Utilizzare il tag style</h2>
+<p>L'utilizzo del <em>tag</em> <code>style</code> all'interno del blocco <code>head</code> permette di separare la struttura del documento (HTML) dallo stile.</p>
+<pre><code class="language-html"><div><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+    <span class="hljs-comment">/* tutti i paragrafi sono rossi */</span>
+    <span class="hljs-selector-tag">p</span> {
+        <span class="hljs-attribute">color</span>: red;
+    }
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+</div></code></pre>
+<h2 id="utilizzare-un-foglio-di-stile-esterno">Utilizzare un foglio di stile esterno</h2>
+<p>Utilizzando un foglio di stile esterno possiamo separare fisicamente, in file distinti, l'HTML e il CSS.</p>
+<pre><code class="language-html"><div><span class="hljs-comment">&lt;!-- index.html --&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"style.css"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+</div></code></pre>
+<pre><code class="language-css"><div><span class="hljs-comment">/* style.css */</span>
+
+<span class="hljs-selector-tag">p</span> {
+    <span class="hljs-attribute">color</span>: red;
+}
+</div></code></pre>
+
+    </body>
+    </html>

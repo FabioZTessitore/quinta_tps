@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>Lezione N1</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body>
+        <h3 id="lezione-n1">Lezione N1</h3>
+<h1 id="creare-una-pagina-html5">Creare una pagina Html5</h1>
+<p>HTML sta per Hyper Text Markup Language. Non è un linguaggio di programmazione, ma un linguaggio di markup (di marcatura, inteso in senso tipografico). Ci consente di creare pagine Web mediante l'utilizzo di marcatori per gli elementi della pagina.</p>
+<p>Per la marcatura si utilizzano i tag (letteralmente etichette). Per esempio, per creare un paragrafo (tag p) si scriverà:</p>
+<pre><code class="language-html"><div><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Un paragrafo molto interessante<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+<h2 id="struttura-di-una-pagina-html5">Struttura di una pagina Html5</h2>
+<p>Le pagine HTML sono racchiuse all'interno di un unico tag <code>html</code>.</p>
+<pre><code class="language-html"><div><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- qui il contenuto della pagina --&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+<p>All'interno di <code>html</code> si trovano due sezioni: <code>head</code> e <code>body</code>. In <code>head</code> trovano posto le informazioni relative al documento; in <code>body</code> andrà il documento stesso.</p>
+<pre><code class="language-html"><div><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- informazioni riguardanti il documento --&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- qui il contenuto della pagina --&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+<p>Infine, per dichiarare che stiamo utilizzando la versione 5 di Html (quella moderna), il tutto si fa precedere da una dichiarazione di tipo <code>doctype</code> (attenzione, non è un tag).</p>
+<pre><code class="language-html"><div><span class="hljs-meta">&lt;!doctype html&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- informazioni riguardanti il documento --&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- qui il contenuto della pagina --&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+<h2 id="la-sezione-head">La sezione <code>head</code></h2>
+<p>Nella sezione <code>head</code> dobbiamo inserire alcune informazioni riguardanti il documento. Per il momento ci interessano il titolo della pagina, la codifica dei caratteri e la gestione della scalatura su schermi piccoli (smartphone).</p>
+<h3 id="il-titolo-della-pagina">Il titolo della pagina</h3>
+<p>Il tag <code>title</code>, all'interno di <code>head</code>, permette di assegnare un titolo alla pagina. Attenzione: il contenuto di <code>title</code> non compare nella pagina Web, ma nella scheda del browser.</p>
+<pre><code class="language-html"><div>...
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>My first Web Page<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+
+...
+</div></code></pre>
+<h3 id="la-codifica-dei-caratteri">La codifica dei caratteri</h3>
+<p>È buona abitudine specificare il set di caratteri utilizzato nella pagina. Noi utilizzeremo sempre UTF-8 (Unicode).</p>
+<pre><code class="language-html"><div>...
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+
+...
+</div></code></pre>
+<h3 id="gestione-della-scalatura-su-schermi-piccoli">Gestione della scalatura su schermi piccoli</h3>
+<p>Quando una pagina Web viene visualizzata su schermo piccolo (es. smartphone), il contenuto della pagina viene scalato per poter essere visibile integralmente. Questo comporta che la dimensione dei caratteri viene ridotta al punto da rendere spesso illegibile la pagina. Per evitare questa scalatura bisogna informare il browser.</p>
+<pre><code class="language-html"><div>...
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">meta</span>
+            <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span>
+            <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1, shrink-to-fit=no"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+
+...
+</div></code></pre>
+<h3 id="il-blocco-head-completo">Il blocco <code>head</code> completo</h3>
+<pre><code class="language-html"><div>...
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">meta</span>
+            <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span>
+            <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1, shrink-to-fit=no"</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>My first Web Page<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+
+...
+</div></code></pre>
+<h2 id="una-semplice-pagina-completa">Una semplice pagina completa</h2>
+<pre><code class="language-html"><div><span class="hljs-meta">&lt;!doctype html&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">meta</span>
+            <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span>
+            <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1, shrink-to-fit=no"</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>My first Web Page<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Natours<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Tours in the nature<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+
+    </body>
+    </html>
