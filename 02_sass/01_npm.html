@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>Lezione N6</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        <link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+    </head>
+    <body>
+        <h3 id="lezione-n6">Lezione N6</h3>
+<h1 id="npm-e-sass">NPM e SASS</h1>
+<p>Sass (Syntactically Awesome StyleSheets) è un'estensione del linguaggio CSS che permette,
+tra le altre cose, di utilizzare variabili, di creare funzioni e di organizzare il foglio di stile in più file.</p>
+<p>Per poterlo utilizzare abbiamo bisogno di un modulo (<code>node-sass</code>) e di uno strumento che ci permetta di installare
+e gestire moduli: <code>npm</code>.</p>
+<h2 id="creazione-di-un-progetto">Creazione di un progetto</h2>
+<p>Innanzitutto bisogna creare una directory di lavoro e inizializzare il sistema di gestione dei pacchetti <code>npm</code>.</p>
+<pre><code class="language-bash"><div>$ npm init -y
+</div></code></pre>
+<p>A questo punto possiamo installare il modulo che si occupa di generare i file CSS a partire dai file Sass.</p>
+<pre><code class="language-bash"><div>$ npm install node-sass
+</div></code></pre>
+<h2 id="creazione-di-uno-script-per-la-generazione-dei-file-css">Creazione di uno script per la generazione dei file CSS</h2>
+<p>L'inizializzazione del progetto ha creato un file <code>package.json</code> all'interno della nostra directory di lavoro.
+In questo file ci sono informazioni riguardanti il progetto stesso e tra queste troviamo anche una lista di script.</p>
+<p>Aggiungiamo il comando per la generazione del file CSS.</p>
+<pre><code class="language-json"><div>...
+<span class="hljs-string">"scripts"</span>: {
+    <span class="hljs-attr">"test"</span>: <span class="hljs-string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>,
+    <span class="hljs-attr">"compile:sass"</span>: <span class="hljs-string">"node-sass main.scss style.css"</span>
+},
+...
+</div></code></pre>
+<p>Una volta creato un file <code>main.scss</code> possiamo effettuare la compilazione.</p>
+<pre><code class="language-scss"><div><span class="hljs-comment">// main.scss</span>
+<span class="hljs-selector-tag">body</span> {
+    <span class="hljs-attribute">background-color</span>: red;
+}
+</div></code></pre>
+<pre><code class="language-bash"><div>$ npm run compile:sass
+</div></code></pre>
+<h3 id="automatizzare-la-compilazione">Automatizzare la compilazione</h3>
+<p>Il parametro <code>-w</code> permette di compilare automaticamente il foglio di stile quando avvengono modifiche ai file <code>scss</code>.</p>
+<pre><code class="language-json"><div>...
+<span class="hljs-string">"scripts"</span>: {
+    <span class="hljs-attr">"test"</span>: <span class="hljs-string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>,
+    <span class="hljs-attr">"compile:sass"</span>: <span class="hljs-string">"node-sass main.scss style.css -w"</span>
+},
+...
+</div></code></pre>
+
+    </body>
+    </html>
