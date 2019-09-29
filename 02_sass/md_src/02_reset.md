@@ -18,19 +18,24 @@ Innanzitutto azzeriamo tutti gli spazi (`padding` e `margin`) per tutti gli elem
 }
 ```
 
-Impostiamo quindi la dimensione del testo.
+Impostiamo quindi la dimensione del testo. Normalmente i browser utilizzano un font-size pari a 16px.
+Per facilitare i calcoli utilizzeremo un valore di 10px, ma espresso sotto forma di percentuale
+per permettere all'utente di modificare tale valore in base alle proprie necessità.
 
 ```css
 html {
     /* La dimensione del testo viene automaticamente
     ereditata da tutti gli elementi (perche' si trovano
     all'interno del tag html)
+    
+    10px / 16px = 0.625
+
     Dopo questa impostazione avremo 1rem = 10px */
-    font-size: 10px;
+    font-size: 62.5%;
 }
 ```
 
-Impostiamo il modello di box ad un valore piu' conveniente.
+Impostiamo il modello di box ad un valore più conveniente.
 
 ```css
 * {
@@ -73,9 +78,12 @@ body {
 html {
     /* La dimensione del testo viene automaticamente
     ereditata da tutti gli elementi (perche' si trovano
-    all'interno del tag html).
+    all'interno del tag html)
+    
+    10px / 16px = 0.625
+
     Dopo questa impostazione avremo 1rem = 10px */
-    font-size: 10px;
+    font-size: 62.5%;
 }
 
 body {

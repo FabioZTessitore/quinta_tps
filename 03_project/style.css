@@ -23,10 +23,7 @@
 @keyframes moveInBottom {
   0% {
     opacity: 0;
-    transform: translateY(10rem); }
-  80% {
-    opacity: 1;
-    transform: translateY(-1rem); }
+    transform: translateY(5rem); }
   100% {
     opacity: 1;
     transform: translateY(0); } }
@@ -37,7 +34,7 @@
   box-sizing: inherit; }
 
 html {
-  font-size: 10px; }
+  font-size: 62.5%; }
 
 body {
   box-sizing: border-box;
@@ -54,37 +51,35 @@ body {
   width: 100%;
   height: 95vh;
   position: relative; }
-
-.logo {
-  position: absolute;
-  top: 4rem;
-  left: 4rem; }
-  .logo__img {
+  .header__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem; }
+  .header__logo {
     height: 3.5rem; }
+  .header__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; }
 
 .heading-primary {
   color: white;
   text-transform: uppercase;
   margin-bottom: 6rem; }
-  .heading-primary__main {
+  .heading-primary--main {
     display: block;
     font-size: 6rem;
     font-weight: 400;
     letter-spacing: 3.5rem;
     animation: moveInLeft 1s; }
-  .heading-primary__sub {
+  .heading-primary--sub {
     display: block;
     font-size: 2rem;
     font-weight: 700;
     letter-spacing: 1.75rem;
     animation: moveInRight 1s; }
-
-.text-box {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center; }
 
 .btn:link, .btn:visited {
   font-size: 1.8rem;
@@ -95,7 +90,9 @@ body {
   transition: all .2s;
   outline: none;
   position: relative;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  animation: moveInBottom .4s ease-out .5s;
+  animation-fill-mode: backwards; }
 
 .btn:hover {
   transform: translateY(-3px);
@@ -105,21 +102,24 @@ body {
   transform: translateY(-1px);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3); }
 
-.btn--white {
-  color: #777;
-  background-color: #fff; }
-
-.btn--animated::after {
+.btn::after {
   content: "";
   display: inline-block;
-  background-color: white;
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
   border-radius: 10rem;
-  z-index: -1;
+  z-index: -1; }
+
+.btn--white {
+  color: #777;
+  background-color: #fff; }
+  .btn--white::after {
+    background-color: white; }
+
+.btn--animated::after {
   transition: all .4s; }
 
 .btn--animated:hover::after {

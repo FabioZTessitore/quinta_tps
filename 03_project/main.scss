@@ -39,12 +39,7 @@ $color-primary-dark: #28b485;
 @keyframes moveInBottom {
     0% {
         opacity: 0;
-        transform: translateY(10rem);
-    }
-
-    80% {
-        opacity: 1;
-        transform: translateY(-1rem);
+        transform: translateY(5rem);
     }
 
     100% {
@@ -60,7 +55,7 @@ $color-primary-dark: #28b485;
 }
 
 html {
-    font-size: 10px;
+    font-size: 62.5%;
 }
 
 body {
@@ -83,15 +78,24 @@ body {
     height: 95vh;
 
     position: relative;
-}
-
-.logo {
-    position: absolute;
-    top: 4rem;
-    left: 4rem;
     
-    &__img {
+    &__logo-box {
+        position: absolute;
+        top: 4rem;
+        left: 4rem;
+    }
+
+    &__logo {
         height: 3.5rem;
+    }
+
+    &__text-box {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        // background-color: red;
+        text-align: center;
     }
 }
 
@@ -102,7 +106,7 @@ body {
 
     // backface-visibility: hidden;
     
-    &__main {
+    &--main {
         display: block;
         font-size: 6rem;
         font-weight: 400;
@@ -110,22 +114,13 @@ body {
         animation: moveInLeft 1s;
     }
 
-    &__sub {
+    &--sub {
         display: block;
         font-size: 2rem;
         font-weight: 700;
         letter-spacing: 1.75rem;
         animation: moveInRight 1s;
     }
-}
-
-.text-box {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    // background-color: red;
-    text-align: center;
 }
 
 .btn {
@@ -140,6 +135,9 @@ body {
         outline: none;
         position: relative;
         text-transform: uppercase;
+
+        animation: moveInBottom .4s ease-out .5s;
+        animation-fill-mode: backwards;
     }
 
     &:hover {
@@ -152,23 +150,29 @@ body {
         box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .3);
     }
 
+    &::after {
+        content: "";
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 10rem;
+        z-index: -1;
+    }
+
     &--white {
         color: #777;
         background-color: #fff;
+
+        &::after {
+            background-color: white;
+        }
     }
 
     &--animated {
         &::after {
-            content: "";
-            display: inline-block;
-            background-color: white;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            border-radius: 10rem;
-            z-index: -1;
             transition: all .4s;
         }
 
