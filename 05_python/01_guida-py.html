@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>Breve guida al linguaggio Python (v. 3)</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body>
+        <h1 id="breve-guida-al-linguaggio-python-v-3">Breve guida al linguaggio Python (v. 3)</h1>
+<h3 id="output-di-una-stringa">Output di una stringa</h3>
+<pre><code class="language-py"><div>print(<span class="hljs-string">"Hello World"</span>)
+</div></code></pre>
+<h3 id="creazione-e-uso-di-variabili">Creazione e uso di variabili</h3>
+<pre><code class="language-py"><div><span class="hljs-comment"># le variabili non vanno dichiarate</span>
+nome = <span class="hljs-string">'Pippo'</span>
+</div></code></pre>
+<h3 id="input-di-una-stringa">Input di una stringa</h3>
+<pre><code class="language-py"><div>nome = input(<span class="hljs-string">'Come ti chiami? '</span>)
+</div></code></pre>
+<h3 id="input-di-un-intero">Input di un intero</h3>
+<pre><code class="language-py"><div><span class="hljs-comment"># input() restituisce sempre una stringa</span>
+<span class="hljs-comment"># ma possiamo convertirla con un cast</span>
+voto = input(<span class="hljs-string">'Inserisci voto: '</span>)
+voto = int(voto)
+</div></code></pre>
+<h3 id="la-libreria-matematica">La libreria matematica</h3>
+<p>Per utilizzare le funzioni della libreria matematica bisogna importarla
+mediante parola chiave <code>import</code>.</p>
+<pre><code class="language-py"><div><span class="hljs-keyword">import</span> math
+
+rad2 = math.sqrt(<span class="hljs-number">2</span>)
+</div></code></pre>
+<h3 id="esecuzione-condizionale">Esecuzione condizionale</h3>
+<pre><code class="language-py"><div><span class="hljs-comment"># *) la condizione non va inserita tra parentesi</span>
+<span class="hljs-comment"># *) I blocchi di codice sono individuati</span>
+<span class="hljs-comment">#     mediante indentazione</span>
+voto = <span class="hljs-number">30</span>
+
+<span class="hljs-keyword">if</span> voto &lt; <span class="hljs-number">17</span>:
+  print(<span class="hljs-string">"Bocciato"</span>)
+<span class="hljs-keyword">elif</span> voto &lt; <span class="hljs-number">25</span>:
+  print(<span class="hljs-string">"Potevi fare di meglio"</span>)
+<span class="hljs-keyword">else</span>:
+  print(<span class="hljs-string">"Congratulazioni"</span>)
+</div></code></pre>
+<h3 id="ciclo-while">Ciclo while</h3>
+<pre><code class="language-py"><div>i = <span class="hljs-number">0</span>
+
+<span class="hljs-keyword">while</span> i &lt; <span class="hljs-number">10</span>:
+  <span class="hljs-keyword">print</span> i
+  i += <span class="hljs-number">1</span>
+</div></code></pre>
+<h3 id="le-tuple">Le tuple</h3>
+<p>Una tupla è un raggruppamento <strong>immutabile</strong> di variabili o valori,
+anche di tipi diversi, delimitati da parentesi tonde:</p>
+<pre><code class="language-py"><div>nome = <span class="hljs-string">'Pippo'</span>
+cognome = <span class="hljs-string">'De Pippis'</span>
+indirizzo = <span class="hljs-string">'via Dei Paperi'</span>
+
+<span class="hljs-comment"># una tupla raggruppa in un unico valore</span>
+record = (nome, cognome, indirizzo)
+</div></code></pre>
+<p><strong>Nota</strong>: le tuple possono essere utilizzate per raggruppare
+valori da passare ad una funzione (es. <code>coordinate = (2, 5)</code>)
+oppure per fare in modo che una funzione restituisca più valori
+contemporaneamente.</p>
+<p>Per accedere ai valori presenti in una tupla si può utilizzare
+la classica notazione dei vettori:</p>
+<pre><code class="language-py"><div>indirizzo = record[<span class="hljs-number">2</span>]
+</div></code></pre>
+<p>oppure si può esplodere nei suoi componenti:</p>
+<pre><code class="language-py"><div>nome, cognome, indirizzo = record
+</div></code></pre>
+<p>Non è possibile modificare il valore di uno degli elementi
+di una tupla:</p>
+<pre><code class="language-py"><div>record[<span class="hljs-number">1</span>] = <span class="hljs-string">'De Paperis'</span>    <span class="hljs-comment"># ERRORE, le tuple sono immutabili</span>
+</div></code></pre>
+<p>ma è possibile costruirne una nuova a partire da una data:</p>
+<pre><code class="language-py"><div>nuovo_record = record[<span class="hljs-number">0</span>] + (<span class="hljs-string">'De Paperis'</span>, ) + record[<span class="hljs-number">2</span>]
+</div></code></pre>
+<p><strong>Nota</strong>: <code>('De Paperis', )</code> è una tupla costituita da un solo elemento</p>
+<h3 id="le-liste">Le liste</h3>
+<p>Le liste sono raggruppamenti di valori di qualsiasi tipo racchiusi tra
+parentesi quadre. A differenza delle tuple sono modificabili.</p>
+<pre><code class="language-py"><div>voti = [<span class="hljs-number">6</span>, <span class="hljs-number">6.5</span>, <span class="hljs-string">'7-'</span>]
+
+<span class="hljs-comment"># aggiunge un elemento ad una lista</span>
+voti.append(<span class="hljs-number">9</span>)
+
+<span class="hljs-comment"># elimina un elemento da una lista</span>
+<span class="hljs-keyword">del</span> voti[<span class="hljs-number">1</span>]
+
+<span class="hljs-comment"># modifica un elemento di una lista</span>
+voti[<span class="hljs-number">0</span>] = <span class="hljs-number">4</span>
+</div></code></pre>
+<h3 id="il-ciclo-for">Il ciclo for</h3>
+<p>Il ciclo for è concepito per iterare sugli elementi di una lista e non su un
+indice.</p>
+<pre><code class="language-py"><div>voti = [<span class="hljs-number">3</span>, <span class="hljs-number">7</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>]
+
+<span class="hljs-keyword">for</span> voto <span class="hljs-keyword">in</span> voti:
+  <span class="hljs-keyword">print</span> voto
+</div></code></pre>
+<p>Può essere utilizzato per contare in congiunzione alla funzione <code>range()</code>:</p>
+<pre><code class="language-py"><div><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">5</span>):
+  <span class="hljs-keyword">print</span> i
+
+<span class="hljs-comment"># stampa</span>
+<span class="hljs-comment"># 0</span>
+<span class="hljs-comment"># 1</span>
+<span class="hljs-comment"># 2</span>
+<span class="hljs-comment"># 3</span>
+<span class="hljs-comment"># 4</span>
+</div></code></pre>
+<p><strong>Nota</strong>: <code>range()</code> accetta anche altri parametri: il valore di partenza,
+il valore di arrivo (escluso) e il passo. Es. i numeri dispari
+compresi tra 13 e 30: <code>range(13, 30, 2)</code>.</p>
+<h3 id="generazione-di-numeri-pseudocasuali">Generazione di numeri pseudocasuali</h3>
+<p>Il modulo <code>random</code> offre diverse funzioni per la generazione di numeri pseudocasuali
+o per l'estrazione di elementi da un insieme dato.</p>
+<pre><code class="language-py"><div><span class="hljs-keyword">import</span> random
+
+<span class="hljs-comment"># estrae un intero compreso tra 7 e 17 (escluso)</span>
+num = random.randrange(<span class="hljs-number">7</span>, <span class="hljs-number">17</span>)
+
+<span class="hljs-comment"># estrae un elemento tra quelli presenti nella lista</span>
+seme = random.choice([<span class="hljs-string">'cuori'</span>, <span class="hljs-string">'quadri'</span>, <span class="hljs-string">'fiori'</span>, <span class="hljs-string">'picche'</span>])
+</div></code></pre>
+<h3 id="la-definizione-di-funzioni">La definizione di funzioni</h3>
+<p>Per definire una funzione si usa la parola chiave <code>def</code>. Non esiste il
+prototipo di funzione.</p>
+<pre><code class="language-py"><div><span class="hljs-comment"># funzione che somma due interi, oppure due float,</span>
+<span class="hljs-comment"># oppure che concatena due stringhe, oppure due tuple</span>
+<span class="hljs-comment"># oppure due liste</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">somma</span><span class="hljs-params">(a, b)</span>:</span>
+  <span class="hljs-keyword">return</span> a+b
+</div></code></pre>
+<h3 id="la-creazione-di-classi">La creazione di classi</h3>
+<pre><code class="language-py"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Articolo</span>:</span>
+  <span class="hljs-comment"># i membri delle classi sono tutti public</span>
+
+  <span class="hljs-comment"># non potendo definire le variabili</span>
+  <span class="hljs-comment"># non esiste una lista di variabili membro</span>
+
+  <span class="hljs-comment"># il costruttore ha un nome speciale __init__</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, titolo, testo)</span>:</span>
+    <span class="hljs-comment"># qui possiamo definire le variabili membro,</span>
+    <span class="hljs-comment"># che saranno componenti di self</span>
+    self.titolo = titolo
+    self.testo = testo
+
+
+  <span class="hljs-comment"># altre funzioni membro</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getTitolo</span><span class="hljs-params">(self)</span>:</span>
+    <span class="hljs-keyword">return</span> self.titolo
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getTesto</span><span class="hljs-params">(self)</span>:</span>
+    <span class="hljs-keyword">return</span> self.testo
+</div></code></pre>
+<p>Un articolo si potrà creare con:</p>
+<pre><code class="language-py"><div>articolo = Articolo(<span class="hljs-string">'Titolo'</span>, <span class="hljs-string">'Testo'</span>)
+</div></code></pre>
+<p>Tutte le funzioni membro accettano come primo parametro un riferimento
+esplicito all'oggetto che si sta creando (equivalente al <code>this</code> del C++).
+Questo perché, quando si crea un Articolo, oppure si richiama una funzione
+membro, dietro le quinte viene effettuata un'operazione di chiamata di
+funzione che il Python vuole mantenere esplicita.</p>
+<pre><code class="language-py"><div><span class="hljs-comment"># scriviamo</span>
+articolo = Articolo(<span class="hljs-string">'Titolo'</span>, <span class="hljs-string">'Testo'</span>)
+
+<span class="hljs-comment"># ma dietro le quinte avviene</span>
+<span class="hljs-comment"># una chiamata ad Articolo.__init__()</span>
+<span class="hljs-comment"># Articolo.__init__(articolo, 'Titolo', 'Testo')</span>
+</div></code></pre>
+
+    </body>
+    </html>

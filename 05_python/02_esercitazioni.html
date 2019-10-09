@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>Esercitazioni Linguaggio Python</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body>
+        <h1 id="esercitazioni-linguaggio-python">Esercitazioni Linguaggio Python</h1>
+<h3 id="programma-nome">Programma <strong>Nome</strong></h3>
+<p>Chiede il nome all'utente e lo stampa</p>
+<pre><code class="language-py"><div><span class="hljs-comment"># print("Come ti chiami?")</span>
+<span class="hljs-comment"># nome = input()</span>
+nome = input(<span class="hljs-string">"Come ti chiami?"</span>)
+
+print(nome)
+</div></code></pre>
+<h3 id="programma-quadrato">Programma <strong>Quadrato</strong></h3>
+<p>Chiede un numero intero e ne stampa il quadrato</p>
+<pre><code class="language-py"><div>x = input(<span class="hljs-string">"Inserisci un numero: "</span>)
+x = int(x)
+
+x2 = x**<span class="hljs-number">2</span>   <span class="hljs-comment"># x2 = x * x</span>
+
+print(x2)
+</div></code></pre>
+<h3 id="programma-radice">Programma <strong>Radice</strong></h3>
+<p>Chiede un numero intero e ne stampa la radice quadrata</p>
+<pre><code class="language-py"><div><span class="hljs-keyword">import</span> math
+
+x = input(<span class="hljs-string">"Inserisci un numero: "</span>)
+x = int(x)
+
+result = math.sqrt(x)
+
+print(result)
+</div></code></pre>
+<h3 id="programma-scelta">Programma <strong>Scelta</strong></h3>
+<p>Stampa un menu e in base alla scelta effettuata dall'utente calcola il quadrato o la radice del numero intero inserito</p>
+<pre><code class="language-py"><div><span class="hljs-keyword">import</span> math
+
+print(<span class="hljs-string">"Scegli\n"</span>)
+print(<span class="hljs-string">"1 - Quadrato"</span>)
+print(<span class="hljs-string">"2 - Radice"</span>)
+choice = input()
+choice = int(choice)
+
+x = input(<span class="hljs-string">"Inserisci un numero: "</span>)
+x = int(x)
+
+<span class="hljs-keyword">if</span> choice == <span class="hljs-number">1</span>:
+    result = x**<span class="hljs-number">2</span>
+    print(result)
+<span class="hljs-keyword">elif</span> choice == <span class="hljs-number">2</span>:
+    result = math.sqrt(x)
+    print(result)
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">"Scelta non valida"</span>)
+</div></code></pre>
+<h3 id="programma-funzioni">Programma <strong>Funzioni</strong></h3>
+<p>Riscrivere <strong>Scelta</strong> utilizzando delle funzioni per il calcolo del quadrato e della radice</p>
+<pre><code class="language-py"><div><span class="hljs-keyword">import</span> math
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">quadrato</span><span class="hljs-params">(x)</span>:</span>
+    <span class="hljs-keyword">return</span> x**<span class="hljs-number">2</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">radice</span><span class="hljs-params">(x)</span>:</span>
+    <span class="hljs-keyword">return</span> math.sqrt(x)
+
+print(<span class="hljs-string">"Scegli\n"</span>)
+print(<span class="hljs-string">"1 - Quadrato"</span>)
+print(<span class="hljs-string">"2 - Radice"</span>)
+choice = input()
+choice = int(choice)
+
+x = input(<span class="hljs-string">"Inserisci un numero: "</span>)
+x = int(x)
+
+<span class="hljs-keyword">if</span> choice == <span class="hljs-number">1</span>:
+    result = quadrato(x)
+    print(result)
+<span class="hljs-keyword">elif</span> choice == <span class="hljs-number">2</span>:
+    result = radice(x)
+    print(result)
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">"Scelta non valida"</span>)
+</div></code></pre>
+<h3 id="programma-dado">Programma <strong>Dado</strong></h3>
+<p>Lancia un dado a sei facce</p>
+<pre><code class="language-py"><div><span class="hljs-keyword">import</span> random
+
+faccia = random.randrange(<span class="hljs-number">1</span>, <span class="hljs-number">7</span>)
+
+print(faccia)
+</div></code></pre>
+<h3 id="programma-dadi">Programma <strong>Dadi</strong></h3>
+<p>Lancia un dado a sei facce 1000 volte e conta le occorrenze del 6</p>
+<pre><code class="language-py"><div><span class="hljs-keyword">import</span> random
+
+N = <span class="hljs-number">1000</span>
+
+occorrenze_6 = <span class="hljs-number">0</span>
+
+i = <span class="hljs-number">0</span>
+<span class="hljs-keyword">while</span> i &lt; N:
+    faccia = random.randrange(<span class="hljs-number">1</span>, <span class="hljs-number">7</span>)
+
+    <span class="hljs-keyword">if</span> faccia == <span class="hljs-number">6</span>:
+        occorrenze_6 += <span class="hljs-number">1</span>
+
+    i += <span class="hljs-number">1</span>
+
+print(occorrenze_6)
+</div></code></pre>
+
+    </body>
+    </html>
