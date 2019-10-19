@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Creazione di un client TCP/IPv4</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="creazione-di-un-client-tcpipv4">Creazione di un client TCP/IPv4</h1>
+<p>Un client deve effettuare le seguenti operazioni:</p>
+<ol>
+<li>Creazione del socket</li>
+<li>Connessione al server</li>
+<li>Invio (<code>send</code>) di dati al server</li>
+<li>Ricezione (<code>recv</code>) della risposta del server</li>
+<li>Chiusura della connessione</li>
+</ol>
+<pre><code class="language-py"><div><span class="hljs-keyword">import</span> socket
+
+<span class="hljs-comment"># 1 Creazione del socket</span>
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+<span class="hljs-comment"># 2 Connessione al server</span>
+s.connect( (<span class="hljs-string">'indirizzo IP'</span>, porta) )
+
+<span class="hljs-comment"># 3 Invio di dati al server</span>
+<span class="hljs-comment"># I caratteri da inviare vanno preventivamente convertiti di byte</span>
+s.send( bytes(<span class="hljs-string">'hello'</span>, <span class="hljs-string">'utf-8'</span>) )
+
+<span class="hljs-comment"># 4 Ricezione dei dati dal server</span>
+data = s.recv(<span class="hljs-number">1000</span>)             <span class="hljs-comment"># dimensione massima (in byte) che possono essere letti</span>
+data = str(data, <span class="hljs-string">'utf-8'</span>)       <span class="hljs-comment"># converte i byte in string</span>
+
+<span class="hljs-comment"># 5 Chiusura della connessione</span>
+s.close()
+
+<span class="hljs-comment"># Stampa la risposta del server</span>
+print(data)
+</div></code></pre>
+
+    </body>
+    </html>

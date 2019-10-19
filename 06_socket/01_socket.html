@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>I Socket</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="i-socket">I Socket</h1>
+<h2 id="creazione-di-un-socket">Creazione di un socket</h2>
+<pre><code class="language-py"><div><span class="hljs-keyword">import</span> socket
+
+s = socket.socket(
+    <span class="hljs-comment"># ADDRESS_FAMILY,</span>
+    <span class="hljs-comment"># SOCKET_TYPE</span>
+)
+</div></code></pre>
+<h3 id="address-family">Address Family</h3>
+<pre><code class="language-py"><div>socket.AF_INET      <span class="hljs-comment"># IPv4</span>
+socket.AF_INET6     <span class="hljs-comment"># IPv6</span>
+</div></code></pre>
+<h3 id="socket-types">Socket Types</h3>
+<pre><code class="language-py"><div>socket.SOCK_STREAM  <span class="hljs-comment"># TCP, stream</span>
+socket.SOCK_DGRAM   <span class="hljs-comment"># UDP, datagram</span>
+</div></code></pre>
+<h3 id="esempio-di-creazione-di-un-socket-tcpipv4">Esempio di creazione di un socket TCP/IPv4</h3>
+<pre><code class="language-py"><div><span class="hljs-keyword">import</span> socket
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+</div></code></pre>
+
+    </body>
+    </html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Creazione di un server TCP/IPv4</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="creazione-di-un-server-tcpipv4">Creazione di un server TCP/IPv4</h1>
+<p>Un server deve effettuare le seguenti operazioni:</p>
+<ol>
+<li>Creazione del socket</li>
+<li>Associazione di una porta su cui rimanere in ascolto</li>
+<li>Specificare la lunghezza della coda di attesa</li>
+<li>Girare in loop infinito
+<ol>
+<li>Restare in ascolto per eventuali connessioni</li>
+<li>Ricezione (<code>recv</code>) della richiesta del client</li>
+<li>Invio (<code>send</code>) della risposta al client</li>
+<li>Chiusura della connessione</li>
+</ol>
+</li>
+</ol>
+<pre><code class="language-py"><div><span class="hljs-keyword">import</span> socket
+
+<span class="hljs-comment"># 1 Creazione del socket</span>
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+<span class="hljs-comment"># 2 Associazione della porta</span>
+s.bind( (<span class="hljs-string">''</span>, <span class="hljs-number">9000</span>) )
+
+<span class="hljs-comment"># 3 Specificare la lunghezza della coda di attesa</span>
+s.listen(<span class="hljs-number">5</span>)
+
+<span class="hljs-comment"># 4 Girare in loop infinito</span>
+<span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+    <span class="hljs-comment"># 1 Restare in ascolto per eventuali connessioni</span>
+    c, a = accept()
+    print(<span class="hljs-string">'Connessione da'</span>, a)
+
+    <span class="hljs-comment"># 2 Ricezione (`recv`) della richiesta del client</span>
+    data = c.recv(<span class="hljs-number">1000</span>)
+    data = str(data, <span class="hljs-string">'utf-8'</span>)
+
+    <span class="hljs-comment"># 3 Invio (`send`) della risposta al client</span>
+    risposta = <span class="hljs-string">'bye'</span>
+    <span class="hljs-keyword">if</span> data == <span class="hljs-string">'hi'</span>:
+        risposta = <span class="hljs-string">'hello'</span>
+    <span class="hljs-keyword">elif</span> data == <span class="hljs-string">'ciao'</span>:
+        risposta = <span class="hljs-string">'ciao'</span>
+    c.send( bytes(risposta, <span class="hljs-string">'utf-8'</span>) )
+
+    <span class="hljs-comment"># 4 Chiusura della connessione</span>
+    c.close()
+</div></code></pre>
+
+    </body>
+    </html>
