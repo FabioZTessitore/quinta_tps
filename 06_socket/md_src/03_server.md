@@ -26,7 +26,7 @@ s.listen(5)
 # 4 Girare in loop infinito
 while True:
     # 1 Restare in ascolto per eventuali connessioni
-    c, a = accept()
+    c, a = s.accept()
     print('Connessione da', a)
 
     # 2 Ricezione (`recv`) della richiesta del client

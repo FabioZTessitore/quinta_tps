@@ -50,7 +50,7 @@ s.listen(<span class="hljs-number">5</span>)
 <span class="hljs-comment"># 4 Girare in loop infinito</span>
 <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
     <span class="hljs-comment"># 1 Restare in ascolto per eventuali connessioni</span>
-    c, a = accept()
+    c, a = s.accept()
     print(<span class="hljs-string">'Connessione da'</span>, a)
 
     <span class="hljs-comment"># 2 Ricezione (`recv`) della richiesta del client</span>
