@@ -22,7 +22,7 @@ s.connect( ('indirizzo IP', porta) )
 s.send( bytes('hello', 'utf-8') )
 
 # 4 Ricezione dei dati dal server
-data = s.recv(1000)             # dimensione massima (in byte) che possono essere letti
+data = s.recv(1000)             # dimensione massima (in byte) delle informazioni che possono essere lette
 data = str(data, 'utf-8')       # converte i byte in string
 
 # 5 Chiusura della connessione

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Creazione di una chat client/server</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="creazione-di-una-chat-clientserver">Creazione di una chat client/server</h1>
+<p>Creare una chat client/server</p>
+<p>Suggerimento: il server dopo aver accettato una connessione inizia una chat
+con quel client. Nel frattempo non può accettare altre connessioni.</p>
+<pre><code class="language-py"><div><span class="hljs-comment"># client.py</span>
+
+<span class="hljs-keyword">import</span> socket
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+s.connect( (<span class="hljs-string">'127.0.0.1'</span>, <span class="hljs-number">9000</span>) )
+
+<span class="hljs-comment"># inizio chat</span>
+<span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+    msg = input(<span class="hljs-string">'&gt;&gt;&gt; '</span>)
+    msg = bytes(msg, <span class="hljs-string">'utf-8'</span>)
+    s.send( msg )
+
+    data = s.recv(<span class="hljs-number">1000</span>)
+    data = str(data, <span class="hljs-string">'utf-8'</span>)       <span class="hljs-comment"># converte i byte in string</span>
+    print( data )
+
+    <span class="hljs-keyword">if</span> data == <span class="hljs-string">'end'</span>:
+        <span class="hljs-keyword">break</span>
+
+s.close()
+</div></code></pre>
+<pre><code class="language-py"><div><span class="hljs-comment"># server.py</span>
+
+<span class="hljs-keyword">import</span> socket
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+s.bind( (<span class="hljs-string">''</span>, <span class="hljs-number">9000</span>) )
+
+s.listen(<span class="hljs-number">5</span>)
+
+<span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+    c, a = s.accept()
+    print(<span class="hljs-string">'Connessione da'</span>, a)
+
+    <span class="hljs-comment"># inizio chat</span>
+    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+        data = c.recv(<span class="hljs-number">1000</span>)
+        data = str(data, <span class="hljs-string">'utf-8'</span>)
+        print( data )
+
+        <span class="hljs-comment"># se il client chiede la chiusura</span>
+        <span class="hljs-keyword">if</span> data == <span class="hljs-string">'end'</span>:
+            c.send( bytes(<span class="hljs-string">'end'</span>, <span class="hljs-string">'utf-8'</span>) )
+            c.close()
+            <span class="hljs-keyword">break</span>
+
+        msg = input(<span class="hljs-string">'&gt;&gt;&gt; '</span>)
+        c.send( bytes(msg, <span class="hljs-string">'utf-8'</span>) )
+        <span class="hljs-comment"># se il server chiede la chiusura</span>
+        <span class="hljs-keyword">if</span> msg == <span class="hljs-string">'end'</span>:
+            c.close()
+            <span class="hljs-keyword">break</span>
+
+
+    <span class="hljs-comment"># 4 Chiusura della connessione</span>
+    c.close()
+</div></code></pre>
+
+    </body>
+    </html>

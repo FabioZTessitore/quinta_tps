@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Creazione di un thread</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="creazione-di-un-thread">Creazione di un thread</h1>
+<pre><code class="language-py"><div><span class="hljs-keyword">from</span> threading <span class="hljs-keyword">import</span> Thread
+<span class="hljs-keyword">import</span> time
+
+<span class="hljs-comment"># una variabile accessibile anche dal thread</span>
+test_value = <span class="hljs-number">0</span>
+
+<span class="hljs-comment"># funzione che verra' eseguita in un thread</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">countdown</span><span class="hljs-params">(start)</span>:</span>
+    <span class="hljs-keyword">global</span> test_value
+    
+    n = start
+    <span class="hljs-keyword">while</span> n &gt; <span class="hljs-number">0</span>:
+        print(<span class="hljs-string">'test_value is:'</span>, test_value)
+        print(n)
+        n -= <span class="hljs-number">1</span>
+        test_value += <span class="hljs-number">1</span>
+        time.sleep(<span class="hljs-number">1</span>)
+
+print(<span class="hljs-string">'Creazione di un thread'</span>)
+t = Thread(target=countdown, args=(<span class="hljs-number">10</span>,))
+
+test_value = <span class="hljs-number">42</span>
+print(<span class="hljs-string">'Modifica della variabile di test a'</span>, test_value)
+
+print(<span class="hljs-string">'Thread start ...'</span>)
+t.start()
+
+print(<span class="hljs-string">'Waiting for thread end ...'</span>)
+t.join()
+
+print(<span class="hljs-string">'Done'</span>)
+</div></code></pre>
+
+    </body>
+    </html>

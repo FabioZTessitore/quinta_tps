@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Gestione dei client attraverso un thread</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="gestione-dei-client-attraverso-un-thread">Gestione dei client attraverso un thread</h1>
+<pre><code class="language-py"><div><span class="hljs-comment"># server.py</span>
+
+<span class="hljs-keyword">import</span> socket
+<span class="hljs-keyword">import</span> time
+<span class="hljs-keyword">from</span> threading <span class="hljs-keyword">import</span> Thread
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+s.bind( (<span class="hljs-string">''</span>, <span class="hljs-number">9000</span>) )
+
+s.listen(<span class="hljs-number">5</span>)
+
+clients_list = []
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">handleClients</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">global</span> clients_list
+
+    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+        print(<span class="hljs-string">'Clients List is:'</span>, clients_list)
+        time.sleep(<span class="hljs-number">2</span>)
+
+t = Thread(target=handleClients)
+t.start()
+
+<span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+    c, a = s.accept()
+    print(<span class="hljs-string">'Connessione da'</span>, a)
+
+    clients_list.append(c)
+</div></code></pre>
+
+    </body>
+    </html>
