@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Gestione dei socket mediante select</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="gestione-dei-socket-mediante-select">Gestione dei socket mediante select</h1>
+<p>Il modulo <code>select</code> fornisce accesso ad alcune funzioni del sistema operativo che permettono il monitoraggio delle risorse.</p>
+<p>Il particolare utilizzeremo la funzione <code>select.select()</code> per monitorare lo stato dei socket, evitando di utilizzare i thread, e capire quando sono pronti alla lettura, alla scrittura e i casi di errore. Grazie a <code>select()</code> possiamo monitorare più connessioni contemporaneamente ed in maniera efficiente perché il monitoraggio avviene a livello di sistema operativo.</p>
+<p>La funzione <code>select()</code> accetta tre liste di contenenti canali di comunicazione da monitorare. La prima lista contiene i canali da monitorare per dati in entrata; la seconda per i canali di uscita; la terza per quelli per cui potrebbe esserci qualche errore.</p>
+<p>Nota: saranno i canali di input ad essere monitorati per eventuali errori.</p>
+<pre><code class="language-py"><div><span class="hljs-comment"># esempio di utilizzo della funzione select()</span>
+inputs = [ server ]
+outputs = [ ]
+
+readeable, writable, exceptional = select.select(inputs, outputs, inputs)
+</div></code></pre>
+<p>Le tre liste restituite da <code>select()</code> sono sottoinsiemi delle liste passate come parametri. In particolare: <code>readeable</code> contiene i socket da cui stiamo ricevendo dati; <code>writable</code> sono i socket su cui è possibile scrivere; <code>exceptional</code> sono i socket per cui si è verificata un errore.</p>
+<h2 id="lettura-dei-dati">Lettura dei dati</h2>
+<p>Per quanto riguarda i socket presenti nella lista <code>readeable</code> possono aversi tre casi.</p>
+<h3 id="primo-caso-il-socket-%c3%a8-il-server">Primo caso: il socket è il server</h3>
+<p>Significa che il server è pronto ad accettare una connessione. La nuova connessione verrà aggiunta alla lista dei socket di input da monitorare.</p>
+<pre><code class="language-py"><div><span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> readeable:
+    <span class="hljs-keyword">if</span> s <span class="hljs-keyword">is</span> server:
+        <span class="hljs-comment"># quando il server e' pronto alla lettura significa che</span>
+        <span class="hljs-comment"># e' pronto ad accettare una nuova connessione</span>
+        client, address = s.accept()
+        client.setblocking(<span class="hljs-number">0</span>)
+
+        <span class="hljs-comment"># inizia a monitorare la nuova connessione</span>
+        inputs.append(client)
+
+        <span class="hljs-comment"># aggiungi il nuovo client alla lista</span>
+        <span class="hljs-comment"># dei socket pronti per l'invio dei messaggi</span>
+        outputs.append(client)
+</div></code></pre>
+<h3 id="secondo-caso-il-socket-%c3%a8-un-client-che-ha-inviato-dati">Secondo caso: il socket è un client che ha inviato dati</h3>
+<pre><code class="language-py"><div>    <span class="hljs-keyword">else</span>:
+        data = s.recv(<span class="hljs-number">1024</span>)
+        <span class="hljs-keyword">if</span> data:
+            <span class="hljs-comment"># ci sono dati da leggere</span>
+            print(str(data, <span class="hljs-string">'utf-8'</span>))
+</div></code></pre>
+<h3 id="terzo-caso-il-socket-%c3%a8-un-client-e-non-ci-sono-dati">Terzo caso: il socket è un client e non ci sono dati</h3>
+<p>Se non ci sono dati, il client si è disconnesso</p>
+<pre><code class="language-py"><div>        <span class="hljs-keyword">else</span>:
+            <span class="hljs-comment"># non ci sono dati da leggere</span>
+            
+            <span class="hljs-comment"># Smette di monitorare la connessione e di inviare dati</span>
+            <span class="hljs-keyword">if</span> s <span class="hljs-keyword">in</span> outputs:
+                outputs.remove(s)
+            inputs.remove(s)
+            s.close()
+</div></code></pre>
+
+    </body>
+    </html>
