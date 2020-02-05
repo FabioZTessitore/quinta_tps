@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>ToDo App</title>
+    </head>
+
+    <body>
+        <h1>ToDo App</h1>
+
+        <form action="/todo-create" method="post">
+            <input type="text" id="todo-text" name="todotext" placeholder="Cosa vuoi fare oggi?">
+            <label for="todo-text">ToDo:</label>
+
+            <input type="submit" value="Crea">
+        </form>
+
+        <form action="/clear" method="post">
+            <input type="submit" value="&times;">
+        </form>
+
+        <ul>
+            <% todos.forEach( function (todo) { %>
+                <li>
+                    <%= todo.text %> - <%= todo.done %>
+                    <form action="/toggle" method="post">
+                        <input type="hidden" name="id" value="<%= todo.id %>">
+                        <input type="submit" value="Toggle">
+                    </form>
+                </li>
+            <% }); %>
+        </ul>
+    </body>
+</html>
