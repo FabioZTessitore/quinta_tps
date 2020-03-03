@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Libri</title>
+    </head>
+
+    <body>
+        <h1>Autori</h1>
+
+        <form action="/nuovo-autore" method="POST">
+            <input type="text" name="nome" placeholder="Nome">
+            <input type="text" name="cognome" placeholder="Cognome">
+            <input type="submit" value="Inserisci Nuovo Autore">
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cognome</th>
+                    <th>Nome</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% autori.forEach(function (autore) { %>
+                    <tr>
+                        <td><%= autore.id %></td>
+                        <td><%= autore.cognome %></td>
+                        <td><%= autore.nome %></td>
+                        <td><a href="/autore/<%= autore.id %>/edit">Edit</a></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </body>
+</html>
