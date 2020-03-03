@@ -14,7 +14,7 @@ app.set('view engine', 'ejs');
 
 app.use( bodyParser.urlencoded({ extended: false }) );
 
-let db = new sqlite3.Database('todos.db', (err) => {
+const db = new sqlite3.Database('todos.db', function (err) {
     if (err) {
       console.error(err.message);
     }
@@ -24,7 +24,7 @@ let db = new sqlite3.Database('todos.db', (err) => {
 
 app.get('/', function (req, res) {
     const sql = "SELECT * FROM Todos;";
-    db.all(sql, (err, rows) => {
+    db.all(sql, function (err, rows) {
         if (err) {
             throw err;
         }
@@ -36,21 +36,21 @@ app.get('/', function (req, res) {
 
 app.post('/todo-create', function (req, res) {
     const sql = "INSERT INTO Todos (text) VALUES (?);";
-    db.run(sql, [req.body.todotext], () => {
+    db.run(sql, [req.body.todotext], function () {
         res.redirect('/');
     });
 });
 
 app.post('/toggle', function (req, res) {
     const sql = "UPDATE Todos SET done = NOT done WHERE id=?;"
-    db.run(sql, [parseInt(req.body.id)], () => {
+    db.run(sql, [parseInt(req.body.id)], function () {
         res.redirect('/');
     });
 });
 
 app.post('/clear', function (req, res) {
     const sql = "DELETE FROM Todos WHERE done=1;";
-    db.run(sql, () => {
+    db.run(sql, function () {
         res.redirect('/');
     });
 });
@@ -61,11 +61,11 @@ app.use(function (req, res) {
     );
 });
 
-process.stdin.resume();//so the program will not close instantly
+process.stdin.resume(); //so the program will not close instantly
 
 function exitHandler() {
     console.log('exiting ...');
-    db.close((err) => {
+    db.close(function (err) {
         if (err) {
           return console.error(err.message);
         }
@@ -74,15 +74,15 @@ function exitHandler() {
     });
 }
 
-//do something when app is closing
+// do something when app is closing
 process.on('exit', exitHandler);
 
-//catches ctrl+c event
+// catches ctrl+c event
 process.on('SIGINT', exitHandler);
 
 // catches "kill pid" (for example: nodemon restart)
 process.on('SIGUSR1', exitHandler);
 process.on('SIGUSR2', exitHandler);
 
-//catches uncaught exceptions
+// catches uncaught exceptions
 process.on('uncaughtException', exitHandler);
