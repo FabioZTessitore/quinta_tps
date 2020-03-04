@@ -8,5 +8,40 @@
 
     <body>
         <h1>Libri</h1>
+
+        <p><a href="/">Home</a></p>
+
+        <form action="/nuovo-libro" method="POST">
+            <input type="text" name="titolo" placeholder="Titolo">
+            <select name="autore">
+                <% autori.forEach(function (autore) { %>
+                    <option value="<%= autore.id %>"><%= autore.cognome %> <%= autore.nome %></option>
+                <% }); %>
+            </select>
+            <input type="submit" value="Inserisci Nuovo Autore">
+        </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Titolo</th>
+                <th>Autore</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% libri.forEach(function (libro) { %>
+                <tr>
+                    <td><%= libro.id %></td>
+                    <td><%= libro.titolo %></td>
+                    <td><%= libro.cognome %></td>
+                    <td><a href="/libro/<%= libro.id %>/edit">Edit</a></td>
+                    <td><form action="/delete-libro" method="POST"><input type="hidden" name="id" value="<%= libro.id %>"><input type="submit" value="&times;"></form></td>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
     </body>
 </html>

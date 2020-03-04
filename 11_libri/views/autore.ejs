@@ -9,6 +9,8 @@
     <body>
         <h1>Modifica Autore</h1>
 
+        <p><a href="/autori">Autori</a></p>
+
         <form action="/edit-autore" method="POST">
             <input type="hidden" name="id" value="<%= autore.id %>">
             <input type="text" name="nome" placeholder="Nome" value="<%= autore.nome %>">
