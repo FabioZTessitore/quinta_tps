@@ -14,6 +14,7 @@
         <form action="/nuovo-libro" method="POST">
             <input type="text" name="titolo" placeholder="Titolo">
             <select name="autore">
+                <option value="0">---</option>
                 <% autori.forEach(function (autore) { %>
                     <option value="<%= autore.id %>"><%= autore.cognome %> <%= autore.nome %></option>
                 <% }); %>

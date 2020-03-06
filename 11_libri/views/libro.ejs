@@ -15,6 +15,7 @@
             <input type="hidden" name="id" value="<%= libro.id %>">
             <input type="text" name="titolo" placeholder="Titolo" value="<%= libro.titolo %>">
             <select name="autore">
+                    <option value="0">---</option>
                 <% autori.forEach(function (autore) { %>
                     <option value="<%= autore.id %>" <% if (autore.id == libro.id_autore) { %>selected<% } %>><%= autore.cognome %> <%= autore.nome %></option>
                 <% }); %>
