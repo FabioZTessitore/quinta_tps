@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Libri</title>
+    </head>
+
+    <body>
+        <h1>Modifica Libro</h1>
+
+        <p><a href="/libri">Libri</a></p>
+
+        <h4><%= libro.titolo %> (ID = <%= libro.id %>)</h4>
+        <p>Autori = <%= libro.autori %></p>
+
+        <h4>Modifica titolo</h4>
+        <form action="/edit-libro" method="POST">
+            <input type="hidden" name="id" value="<%= libro.id %>">
+            <input type="text" name="titolo" placeholder="Titolo" value="<%= libro.titolo %>">
+            <input type="submit" value="Aggiorna titolo libro">
+        </form>
+
+        <h4>Aggiungi un autore</h4>
+        <form action="/add-libro-autore" method="POST">
+            <input type="hidden" name="id_libro" value="<%= libro.id %>">
+            <select name="id_autore">
+                <option value="0">---</option>
+                <% autori.forEach(function (autore) { %>
+                    <option value="<%= autore.id %>"><%= autore.cognome %> <%= autore.nome %></option>
+                <% }); %>
+            </select>
+            <input type="submit" value="Aggiungi Autore">
+        </form>
+
+        <h4>Rimuovi un autore</h4>
+        <form action="/remove-libro-autore" method="POST">
+            <input type="hidden" name="id_libro" value="<%= libro.id %>">
+            <select name="id_autore">
+                <option value="0">---</option>
+                <% autori_libro.forEach(function (autore) { %>
+                    <option value="<%= autore.id %>"><%= autore.cognome %> <%= autore.nome %></option>
+                <% }); %>
+            </select>
+            <input type="submit" value="Rimuovi Autore">
+        </form>
+    </body>
+</html>
