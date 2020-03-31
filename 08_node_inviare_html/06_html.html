@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Inviare pagine HTML</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="inviare-pagine-html">Inviare pagine HTML</h1>
+<p>Come risposta alla richiesta del client, invece di inviare una semplice stringa di testo, possiamo inviare una pagina HTML,
+così da sfruttare appieno le caratteristiche del client (il browser).</p>
+<p>Al posto del metodo <code>send()</code> utilizzeremo <code>sendFile()</code>. Tale funzione vuole come
+argomento il percorso assoluto del file da inviare, ma questa caratteristica pone
+un problema: che succede se la directory in cui si trova il nostro progetto viene
+spostata? Tale spostamento, d'altra parte, è inevitabile se vogliamo pubblicare
+la nostra applicazione su un server remoto.</p>
+<p>NodeJS ci viene in soccorso definendo la variabile <code>__dirname</code>. Essa conserva proprio il percorso della directory attuale.</p>
+<p>Immaginando di creare una sottodirectory <code>public</code> per i nostri file HTML e ricordandoci di utilizzare <code>path</code>
+per costruire il percorso in maniera indipendente dal sistema operativo:</p>
+<pre><code class="language-js"><div>...
+    <span class="hljs-comment">// invia il file ./public/index.html</span>
+    res.sendFile( path.join(__dirname, <span class="hljs-string">'public'</span>, <span class="hljs-string">'index.html'</span>) );
+...
+</div></code></pre>
+<h2 id="esempio-completo">Esempio completo</h2>
+<pre><code class="language-js"><div><span class="hljs-comment">// index.js</span>
+
+<span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>);
+
+<span class="hljs-keyword">const</span> app = express();
+
+app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>{
+    <span class="hljs-comment">// invia il file ./public/index.html</span>
+    res.sendFile( path.join(__dirname, <span class="hljs-string">'public'</span>, <span class="hljs-string">'index.html'</span>) );
+});
+
+app.use(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>{
+    res.status(<span class="hljs-number">404</span>);
+    res.send(<span class="hljs-string">'Page Not Found'</span>);
+});
+
+app.listen(<span class="hljs-number">3000</span>);
+</div></code></pre>
+
+    </body>
+    </html>
