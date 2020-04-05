@@ -9,11 +9,9 @@
     <body>
         <h1>ToDo App</h1>
 
-        <form action="/todo-create" method="post">
-            <input type="text" id="todo-text" name="todotext" placeholder="Cosa vuoi fare oggi?">
-            <label for="todo-text">ToDo:</label>
-
-            <input type="submit" value="Crea">
+        <form action="/todos" method="post">
+            ToDo: <input type="text" name="text" placeholder="Cosa vuoi fare oggi?">
+            <input type="submit" value="Crea Nuovo ToDo">
         </form>
 
         <form action="/clear" method="post">

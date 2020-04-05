@@ -28,8 +28,16 @@ app.get('/', function (req, res) {
 });
 
 // Creazione di un nuovo todo
-app.post('/todo-create', function (req, res) {
-    create(req.body.todotext);
+app.post('/todos', function (req, res) {
+    const todo = {
+        id: nextId,
+        text: req.body.text,
+        done: false
+    };
+    nextId++;
+
+    todos.push(todo);
+
     res.redirect('/');
 });
 
@@ -52,18 +60,6 @@ app.use(function (req, res) {
     );
 });
 
-
-
-const create = function (text) {
-    const todo = {
-        id: nextId,
-        text: text,
-        done: false
-    };
-    nextId++;
-
-    todos.push(todo);
-};
 
 const selectById = function (id) {
     return todos.find(function (todo) {
