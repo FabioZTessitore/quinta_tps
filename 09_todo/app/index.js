@@ -42,14 +42,25 @@ app.post('/todos', function (req, res) {
 });
 
 // Todo: Fatto / Non Fatto
-app.post('/toggle', function (req, res) {
-    toggleDone(parseInt(req.body.id));
+app.post('/todos/toggle', function (req, res) {
+    const id = parseInt(req.body.id);
+
+    const todo = todos.find(function (todo) {
+        return todo.id === id;
+    });
+    if (todo) {
+        todo.done = !todo.done;
+    }
+
     res.redirect('/');
 });
 
 // Elimina tutti i todo completati
-app.post('/clear', function (req, res) {
-    deleteDones();
+app.post('/todos/delete', function (req, res) {
+    todos = todos.filter(function (todo) {
+        return  todo.done === false;
+    });
+    
     res.redirect('/');
 });
 
@@ -59,27 +70,5 @@ app.use(function (req, res) {
         path.join(__dirname, 'public', '404.html')
     );
 });
-
-
-const selectById = function (id) {
-    return todos.find(function (todo) {
-        return todo.id === id;
-    });
-};
-
-const selectByStatus = function (done) {
-    return todos.filter(function (todo) {
-        return  todo.done === done;
-    });
-};
-
-const toggleDone = function (id) {
-    const todo = selectById(id);
-    todo.done = !todo.done;
-};
-
-const deleteDones = function () {
-    todos = selectByStatus(false);
-};
 
 app.listen(3000);
